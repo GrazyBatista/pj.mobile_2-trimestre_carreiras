@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Interesse em Carreiras</title>
+    <link rel="stylesheet" href="stylecadastro_grazy.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1>Cadastro de Interesse em Carreiras</h1>
+        
+        <form id="formCarreiras">
+            <div class="form-group">
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="idade">Idade:</label>
+                <input type="number" id="idade" min="14" max="20" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="carreira">Carreira de Interesse:</label>
+                <select id="carreira" required>
+                    <option value="">Escolha uma carreira</option>
+                    <option value="rh">Recursos Humanos</option>
+                    <option value="logistica">Logística</option>
+                    <option value="marketing">Marketing Digital</option>
+                    <option value="energia">Energia e Sustentabilidade</option>
+                    <option value="ti">Tecnologia da Informação</option>
+                </select>
+            </div>
+            
+            <button type="button" onclick="cadastrar()">Enviar Cadastro</button>
+        </form>
+        
+        <div id="resultado"></div>
+    </div>
+    
+    <script>
+        function cadastrar() {
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const idade = document.getElementById('idade').value;
+            const carreira = document.getElementById('carreira').value;
+            
+            if (!nome || !email || !idade || !carreira) {
+                alert('Por favor, preencha todos os campos!');
+                return;
+            }
+            
+            let carreiraTexto;
+            switch(carreira) {
+                case 'rh':
+                    carreiraTexto = 'Recursos Humanos (gestão de pessoas)';
+                    break;
+                case 'logistica':
+                    carreiraTexto = 'Logística (transporte e distribuição)';
+                    break;
+                case 'marketing':
+                    carreiraTexto = 'Marketing Digital (redes sociais e internet)';
+                    break;
+                case 'energia':
+                    carreiraTexto = 'Energia e Sustentabilidade (meio ambiente)';
+                    break;
+                case 'ti':
+                    carreiraTexto = 'Tecnologia da Informação (computadores e programação)';
+                    break;
+                default:
+                    carreiraTexto = 'Não especificado';
+            }
+            
+            const resultado = document.getElementById('resultado');
+            resultado.style.display = 'block';
+            resultado.innerHTML = `
+                <h3>Cadastro realizado!</h3>
+                <p><strong>Nome:</strong> ${nome}</p>
+                <p><strong>E-mail:</strong> ${email}</p>
+                <p><strong>Idade:</strong> ${idade} anos</p>
+                <p><strong>Carreira escolhida:</strong> ${carreiraTexto}</p>
+                <p>Obrigado por participar!</p>
+            `;
+            
+            document.getElementById('formCarreiras').reset();
+        }
+    </script>
+</body>
+
+<footer>
+       <p>Projeto sobre Carreiras - Página da Grazielly</p>
+</footer>
+
+</html>
